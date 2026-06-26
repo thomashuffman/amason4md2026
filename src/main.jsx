@@ -2,7 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowRight,
-  BadgeCheck,
   CheckCircle2,
   Construction,
   ExternalLink,
@@ -21,9 +20,9 @@ import {
 import './styles.css';
 
 const images = {
-  endorsement: '/def5b3_20443aee018547d7a2447072030763e1~mv2.avif',
-  sign: '/IMG_0373_HEIC.avif',
-  termLimits: '/0CAD1D60-EF74-4400-9C54-E35EA6C85826_JPG.avif',
+  primary: '/JeremyPrimary.avif',
+  endorsement: '/Endorsed.avif',
+  sign: '/Sign.avif',
   army: '/Army.avif',
   baltimore: '/baltimore-hero.png'
 };
@@ -32,32 +31,32 @@ const issues = [
   {
     icon: Landmark,
     title: 'Fighting for Our Democracy',
-    text: 'Jeremy will work to create three individual delegate districts, establish independent congressional districting, support term limits, and open primaries.'
+    text: 'I will work to create three individual delegate districts, establish independent congressional districting, support term limits, and open primaries.'
   },
   {
     icon: WalletCards,
     title: 'Reducing Cost of Living',
-    text: 'He will fight lower income taxes, oppose junk fees, and make home ownership in Baltimore more attainable for young people and working families.'
+    text: 'I will fight to lower income taxes, oppose junk fees, and make home ownership in Baltimore more attainable for young people and working families.'
   },
   {
     icon: GraduationCap,
     title: 'Improving Our Schools',
-    text: 'As the husband of a Baltimore City teacher, Jeremy will push for support staff, social workers, and classroom-first education spending.'
+    text: 'As the husband of a Baltimore City teacher, I will push for support staff, social workers, and classroom-first education spending.'
   },
   {
     icon: Construction,
     title: 'Investing in Infrastructure',
-    text: 'He will work to repave roads, repair bridges, improve sidewalks and crosswalks, and make driving, walking, and biking safer.'
+    text: 'I will work to repave roads, repair bridges, improve sidewalks and crosswalks, and make driving, walking, and biking safer.'
   },
   {
     icon: Zap,
     title: 'Lowering Utility Costs',
-    text: 'Jeremy will take on rising BGE bills, pause utility and gasoline taxes, and press for power-grid updates before new data centers move forward.'
+    text: 'I will take on rising BGE bills, pause utility and gasoline taxes, and press for power-grid updates before new data centers move forward.'
   },
   {
     icon: Trash2,
     title: 'Cleaning Our Streets',
-    text: 'Jeremy picks up trash around his neighborhood and wants temporary jobs that clean streets and sidewalks across Baltimore and Maryland.'
+    text: 'Every week, I pick up trash around my neighborhood. I want temporary jobs that clean streets and sidewalks across Baltimore and Maryland.'
   }
 ];
 
@@ -132,17 +131,17 @@ function App() {
             <a className="button primary" href="https://elections.maryland.gov/voter_registration/application.html" target="_blank" rel="noreferrer">
               Register to vote <ArrowRight size={18} />
             </a>
-            <a className="button secondary" href="mailto:amason4md2026@gmail.com">
-              Request a sign
+            <a className="button secondary" href="#donate" aria-disabled="true">
+              Donate
             </a>
           </div>
         </div>
 
         <div className="hero-media">
-          <img className="hero-portrait" src={images.endorsement} alt="Jeremy Amason Forward Party endorsement graphic" />
+          <img className="hero-portrait" src={images.primary} alt="Jeremy Amason campaign portrait" />
           <div className="hero-note">
-            <BadgeCheck size={20} />
-            <span>Proudly endorsed by the Maryland Forward Party</span>
+            <ShieldCheck size={20} />
+            <span>Veteran - Coach - Leader</span>
           </div>
         </div>
       </section>
@@ -167,20 +166,20 @@ function App() {
           <p className="eyebrow">Who I Am</p>
           <h2>Veteran. Coach. Leader.</h2>
           <p>
-            Jeremy was raised in metro-Baltimore. He used an ROTC scholarship to
+            I was raised in metro-Baltimore. I used an ROTC scholarship to
             attend Indiana University and commissioned as a U.S. Army Aviation
             Officer in 2019.
           </p>
           <p>
-            He served as an Aviation Officer and UH-60 Blackhawk Pilot until
-            2024. After leaving the military, Jeremy moved back to Baltimore,
-            where he works as a consultant and high school basketball coach. His
+            I served as an Aviation Officer and UH-60 Blackhawk Pilot until
+            2024. After leaving the military, I moved back to Baltimore,
+            where I work as a consultant and high school basketball coach. My
             wife is a Baltimore City Public School teacher in Cherry Hill.
           </p>
         </div>
         <figure className="image-panel">
           <img src={images.army} alt="Jeremy Amason with fellow soldiers in front of a UH-60 helicopter" />
-          <figcaption>Army aviation service informs Jeremy's approach to practical leadership.</figcaption>
+          <figcaption>My Army aviation service informs my approach to practical leadership.</figcaption>
         </figure>
       </section>
 
@@ -191,14 +190,14 @@ function App() {
         </div>
         <div className="statement-grid">
           <p>
-            Jeremy believes in improving our democracy, empowering more of
+            I believe in improving our democracy, empowering more of
             Baltimore's neighborhoods to choose their own leaders, improving
             city schools, making Baltimore more affordable, and improving roads
             and pedestrian infrastructure.
           </p>
           <p>
-            He chose to run in the fall of 2025 because Baltimore deserves a
-            choice at the polls. Jeremy believes common-sense action can improve
+            I chose to run in the fall of 2025 because Baltimore deserves a
+            choice at the polls. I believe common-sense action can improve
             day-to-day life for everyone in the 46th District.
           </p>
         </div>
@@ -253,6 +252,9 @@ function App() {
             across District 46.
           </p>
           <div className="link-list">
+            <a className="request-sign-link" href="mailto:amason4md2026@gmail.com">
+              Request a sign <Mail size={16} />
+            </a>
             <a href="https://www.facebook.com/JeremyAmasonForDelegate" target="_blank" rel="noreferrer">
               Facebook <ExternalLink size={16} />
             </a>
@@ -271,7 +273,7 @@ function App() {
           <p className="eyebrow">Endorsement</p>
           <h2>Proudly endorsed by the Maryland Forward Party.</h2>
           <p>
-            Jeremy aligned with the Maryland Forward Party because of a shared
+            I aligned with the Maryland Forward Party because of a shared
             commitment to returning power to the people and solving problems
             with fresh leadership.
           </p>
@@ -279,7 +281,7 @@ function App() {
             Maryland Forward Party <ExternalLink size={17} />
           </a>
         </div>
-        <img src={images.termLimits} alt="Jeremy Amason term limits pledge graphic" />
+        <img src={images.endorsement} alt="Jeremy Amason Forward Party endorsement graphic" />
       </section>
 
       <footer className="site-footer">

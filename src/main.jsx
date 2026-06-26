@@ -2,52 +2,89 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowRight,
+  BadgeCheck,
   CheckCircle2,
-  HeartHandshake,
-  Home,
+  Construction,
+  ExternalLink,
+  GraduationCap,
+  Handshake,
+  Landmark,
   Mail,
   MapPin,
-  Megaphone,
   Menu,
   ShieldCheck,
-  Users,
-  X
+  Trash2,
+  WalletCards,
+  X,
+  Zap
 } from 'lucide-react';
 import './styles.css';
 
+const images = {
+  endorsement: '/def5b3_20443aee018547d7a2447072030763e1~mv2.avif',
+  sign: '/IMG_0373_HEIC.avif',
+  termLimits: '/0CAD1D60-EF74-4400-9C54-E35EA6C85826_JPG.avif',
+  army: '/Army.avif',
+  baltimore: '/baltimore-hero.png'
+};
+
 const issues = [
   {
-    icon: Home,
-    title: 'Affordable Housing',
-    text: 'Expand housing stability, protect renters, and support pathways to ownership for Baltimore families.'
+    icon: Landmark,
+    title: 'Fighting for Our Democracy',
+    text: 'Jeremy will work to create three individual delegate districts, establish independent congressional districting, support term limits, and open primaries.'
   },
   {
-    icon: ShieldCheck,
-    title: 'Public Safety',
-    text: 'Invest in accountable prevention, neighborhood services, and the public systems that keep residents safe.'
+    icon: WalletCards,
+    title: 'Reducing Cost of Living',
+    text: 'He will fight lower income taxes, oppose junk fees, and make home ownership in Baltimore more attainable for young people and working families.'
   },
   {
-    icon: HeartHandshake,
-    title: 'Health Care',
-    text: 'Champion accessible care, mental health support, and better health outcomes across District 40.'
+    icon: GraduationCap,
+    title: 'Improving Our Schools',
+    text: 'As the husband of a Baltimore City teacher, Jeremy will push for support staff, social workers, and classroom-first education spending.'
   },
   {
-    icon: Users,
-    title: 'Youth & Education',
-    text: 'Create stronger opportunities for students, families, educators, and young people entering the workforce.'
+    icon: Construction,
+    title: 'Investing in Infrastructure',
+    text: 'He will work to repave roads, repair bridges, improve sidewalks and crosswalks, and make driving, walking, and biking safer.'
+  },
+  {
+    icon: Zap,
+    title: 'Lowering Utility Costs',
+    text: 'Jeremy will take on rising BGE bills, pause utility and gasoline taxes, and press for power-grid updates before new data centers move forward.'
+  },
+  {
+    icon: Trash2,
+    title: 'Cleaning Our Streets',
+    text: 'Jeremy picks up trash around his neighborhood and wants temporary jobs that clean streets and sidewalks across Baltimore and Maryland.'
   }
 ];
 
 const neighborhoods = [
-  'Bolton Hill',
-  'Reservoir Hill',
-  'Upton',
-  'Sandtown-Winchester',
-  'Druid Heights',
-  'Mondawmin',
-  'Hanlon',
-  'Ashburton',
-  'Woodberry'
+  'Bayview',
+  'Brewers Hill',
+  'Brooklyn',
+  'Butchers Hill',
+  'Canton',
+  'Cherry Hill',
+  'Federal Hill',
+  "Fell's Point",
+  'Graceland Park',
+  'Greektown',
+  'Harbor East',
+  'Highlandtown',
+  'Jonestown',
+  'Lakeland',
+  'Little Italy',
+  'Locust Point',
+  'McElderry Park',
+  'Mt. Winans',
+  'Otterbein',
+  'Patterson Park',
+  'Riverside',
+  'St. Helena',
+  'Westport'
 ];
 
 function App() {
@@ -56,11 +93,11 @@ function App() {
   return (
     <main>
       <header className="site-header">
-        <a className="brand" href="#top" aria-label="Paris Gray Amason campaign home">
-          <span className="brand-mark">PGA</span>
+        <a className="brand" href="#top" aria-label="Jeremy Amason campaign home">
+          <span className="brand-mark">JA</span>
           <span>
-            <strong>Paris Gray Amason</strong>
-            <small>Maryland Delegate, District 40</small>
+            <strong>Jeremy L. Amason</strong>
+            <small>Maryland House District 46</small>
           </span>
         </a>
 
@@ -74,74 +111,103 @@ function App() {
         </button>
 
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>Get to Know Jeremy</a>
           <a href="#issues" onClick={() => setMenuOpen(false)}>Issues</a>
-          <a href="#district" onClick={() => setMenuOpen(false)}>District</a>
+          <a href="#district" onClick={() => setMenuOpen(false)}>46th District</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          <a className="nav-cta" href="#volunteer" onClick={() => setMenuOpen(false)}>Get Involved</a>
+          <a className="nav-cta" href="mailto:amason4md2026@gmail.com" onClick={() => setMenuOpen(false)}>Get Involved</a>
         </nav>
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-media" aria-hidden="true">
-          <div className="portrait-frame">
-            <div className="portrait-placeholder">Campaign Photo</div>
+        <div className="hero-copy">
+          <p className="eyebrow">Moderate Republican for 2026</p>
+          <h1>Jeremy L. Amason for Maryland House District 46</h1>
+          <p className="hero-text">
+            Vote for a Better Baltimore with pragmatic leadership focused on
+            democracy, affordability, schools, infrastructure, utility costs,
+            and cleaner streets.
+          </p>
+          <div className="hero-actions">
+            <a className="button primary" href="https://elections.maryland.gov/voter_registration/application.html" target="_blank" rel="noreferrer">
+              Register to vote <ArrowRight size={18} />
+            </a>
+            <a className="button secondary" href="mailto:amason4md2026@gmail.com">
+              Request a sign
+            </a>
           </div>
         </div>
 
-        <div className="hero-copy">
-          <p className="eyebrow">Democrat for Maryland House of Delegates</p>
-          <h1>Paris Gray Amason for District 40</h1>
-          <p className="hero-text">
-            Vote for a better Baltimore with a campaign focused on housing, safety,
-            health care, education, and opportunity in every neighborhood.
-          </p>
-          <div className="hero-actions">
-            <a className="button primary" href="#volunteer">
-              Join the campaign <ArrowRight size={18} />
-            </a>
-            <a className="button secondary" href="#issues">Explore priorities</a>
+        <div className="hero-media">
+          <img className="hero-portrait" src={images.endorsement} alt="Jeremy Amason Forward Party endorsement graphic" />
+          <div className="hero-note">
+            <BadgeCheck size={20} />
+            <span>Proudly endorsed by the Maryland Forward Party</span>
           </div>
         </div>
       </section>
 
       <section className="intro-band" aria-label="Campaign highlights">
         <div>
-          <strong>District 40</strong>
-          <span>Baltimore City communities</span>
+          <strong>District 46</strong>
+          <span>Baltimore City neighborhoods</span>
         </div>
         <div>
-          <strong>2026</strong>
-          <span>Maryland election cycle</span>
+          <strong>Veteran</strong>
+          <span>Army aviation officer and UH-60 pilot</span>
         </div>
         <div>
-          <strong>People first</strong>
-          <span>Housing, health, safety, youth</span>
+          <strong>Coach</strong>
+          <span>Consultant and high school basketball coach</span>
         </div>
       </section>
 
-      <section className="section split" id="about">
-        <div>
-          <p className="eyebrow">Meet Paris</p>
-          <h2>Leadership rooted in service, community, and Baltimore’s future.</h2>
-        </div>
-        <div className="prose">
+      <section className="section about" id="about">
+        <div className="about-copy">
+          <p className="eyebrow">Who I Am</p>
+          <h2>Veteran. Coach. Leader.</h2>
           <p>
-            This starter template gives the campaign a modern foundation with clear
-            messaging, mobile-friendly navigation, and sections that can grow as the
-            platform, photos, endorsements, and donation workflows are finalized.
+            Jeremy was raised in metro-Baltimore. He used an ROTC scholarship to
+            attend Indiana University and commissioned as a U.S. Army Aviation
+            Officer in 2019.
           </p>
           <p>
-            Replace this copy with the official biography, campaign story, and
-            approved language before launch.
+            He served as an Aviation Officer and UH-60 Blackhawk Pilot until
+            2024. After leaving the military, Jeremy moved back to Baltimore,
+            where he works as a consultant and high school basketball coach. His
+            wife is a Baltimore City Public School teacher in Cherry Hill.
+          </p>
+        </div>
+        <figure className="image-panel">
+          <img src={images.army} alt="Jeremy Amason with fellow soldiers in front of a UH-60 helicopter" />
+          <figcaption>Army aviation service informs Jeremy's approach to practical leadership.</figcaption>
+        </figure>
+      </section>
+
+      <section className="section stand-for">
+        <div className="section-heading">
+          <p className="eyebrow">What I Stand For</p>
+          <h2>Baltimore deserves new and pragmatic leadership in Annapolis.</h2>
+        </div>
+        <div className="statement-grid">
+          <p>
+            Jeremy believes in improving our democracy, empowering more of
+            Baltimore's neighborhoods to choose their own leaders, improving
+            city schools, making Baltimore more affordable, and improving roads
+            and pedestrian infrastructure.
+          </p>
+          <p>
+            He chose to run in the fall of 2025 because Baltimore deserves a
+            choice at the polls. Jeremy believes common-sense action can improve
+            day-to-day life for everyone in the 46th District.
           </p>
         </div>
       </section>
 
       <section className="section" id="issues">
         <div className="section-heading">
-          <p className="eyebrow">Priorities</p>
-          <h2>A platform built around everyday quality of life.</h2>
+          <p className="eyebrow">The Issues</p>
+          <h2>Common-sense priorities for the 46th District.</h2>
         </div>
         <div className="issue-grid">
           {issues.map(({ icon: Icon, title, text }) => (
@@ -156,12 +222,16 @@ function App() {
 
       <section className="section district" id="district">
         <div className="district-copy">
-          <p className="eyebrow">District 40</p>
-          <h2>Representing Baltimore neighborhoods with urgency and care.</h2>
+          <p className="eyebrow">46th District</p>
+          <h2>Neighborhoods across South and Southeast Baltimore.</h2>
           <p>
-            The district section can become an interactive map, neighborhood guide,
-            event list, or voter information hub.
+            District 46 includes communities from Bayview and Brewers Hill to
+            Cherry Hill, Federal Hill, Patterson Park, Riverside, Westport, and
+            more.
           </p>
+          <a className="text-link" href="https://mgaleg.maryland.gov/mgawebsite/members/district" target="_blank" rel="noreferrer">
+            Find your district <ExternalLink size={16} />
+          </a>
         </div>
         <div className="neighborhoods">
           {neighborhoods.map((name) => (
@@ -170,37 +240,56 @@ function App() {
         </div>
       </section>
 
-      <section className="section action-panel" id="volunteer">
-        <div>
-          <p className="eyebrow">Get involved</p>
-          <h2>Help build momentum across Baltimore.</h2>
+      <section className="section media-row">
+        <figure className="image-panel sign-panel">
+          <img src={images.sign} alt="Jeremy Amason District 46 campaign yard sign" />
+          <figcaption>Live in District 46 and want a sign?</figcaption>
+        </figure>
+        <div className="media-copy">
+          <p className="eyebrow">Social and Get Involved</p>
+          <h2>Help build a better Baltimore.</h2>
           <p>
-            Add links here for donations, volunteer shifts, lawn signs, events, and
-            email signup once those services are selected.
+            Follow the campaign, request a sign, or reach out to get involved
+            across District 46.
           </p>
+          <div className="link-list">
+            <a href="https://www.facebook.com/JeremyAmasonForDelegate" target="_blank" rel="noreferrer">
+              Facebook <ExternalLink size={16} />
+            </a>
+            <a href="https://www.instagram.com/amason4md2026/" target="_blank" rel="noreferrer">
+              Instagram <ExternalLink size={16} />
+            </a>
+            <a href="mailto:amason4md2026@gmail.com">
+              Email the campaign <Mail size={16} />
+            </a>
+          </div>
         </div>
-        <form className="signup-form">
-          <label>
-            Name
-            <input type="text" name="name" placeholder="Your name" />
-          </label>
-          <label>
-            Email
-            <input type="email" name="email" placeholder="you@example.com" />
-          </label>
-          <button className="button primary" type="button">
-            <Megaphone size={18} /> Sign me up
-          </button>
-        </form>
       </section>
 
-      <footer className="site-footer" id="contact">
+      <section className="section endorsement" id="contact">
         <div>
-          <strong>Paris Gray Amason for Maryland Delegate</strong>
-          <p>Authority: Friends of Paris Gray Amason. Treasurer details go here.</p>
+          <p className="eyebrow">Endorsement</p>
+          <h2>Proudly endorsed by the Maryland Forward Party.</h2>
+          <p>
+            Jeremy aligned with the Maryland Forward Party because of a shared
+            commitment to returning power to the people and solving problems
+            with fresh leadership.
+          </p>
+          <a className="button secondary" href="https://www.marylandforwardparty.com/" target="_blank" rel="noreferrer">
+            Maryland Forward Party <ExternalLink size={17} />
+          </a>
         </div>
-        <a href="mailto:info@example.com"><Mail size={17} /> info@example.com</a>
-        <span><CheckCircle2 size={17} /> Built as a React starter template</span>
+        <img src={images.termLimits} alt="Jeremy Amason term limits pledge graphic" />
+      </section>
+
+      <footer className="site-footer">
+        <div>
+          <strong>Jeremy L. Amason for Maryland House District 46</strong>
+          <p>Authority: Friends of Jeremy Amason. Megan Amason, Treasurer.</p>
+        </div>
+        <a href="mailto:amason4md2026@gmail.com"><Mail size={17} /> amason4md2026@gmail.com</a>
+        <span><Handshake size={17} /> Vote for a Better Baltimore</span>
+        <span><CheckCircle2 size={17} /> 2026 Primary Election</span>
       </footer>
     </main>
   );

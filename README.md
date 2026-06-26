@@ -1,7 +1,7 @@
-# Paris Gray Amason 2026 Website Template
+# Jeremy L. Amason 2026 Website
 
-Starter React/Vite site for a modern campaign website inspired by the current
-amason4md2026.com content structure.
+React/Vite campaign website for Jeremy L. Amason for Maryland House of Delegates,
+District 46.
 
 ## Quick Start
 
@@ -22,11 +22,11 @@ The production output will be created in `dist/`.
 
 ## Suggested Next Steps
 
-- Replace placeholder copy with approved campaign language.
-- Add official photography and campaign logo files in `public/`.
 - Connect the signup form to a mailing list, CRM, or form service.
-- Add donation, endorsement, events, and voter information links.
-- Update the authority line with final treasurer and committee details.
+- Add donation, events, and voter information links as campaign infrastructure
+  comes online.
+- Replace or refine images in `public/` as final campaign photography becomes
+  available.
 
 ## GitHub Upload
 

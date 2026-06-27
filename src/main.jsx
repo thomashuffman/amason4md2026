@@ -20,6 +20,7 @@ import {
 import './styles.css';
 
 const images = {
+  first: '/FirstPicture.avif',
   primary: '/JeremyPrimary.avif',
   endorsement: '/Endorsed.avif',
   sign: '/Sign.avif',
@@ -131,17 +132,19 @@ function App() {
             <a className="button primary" href="https://elections.maryland.gov/voter_registration/application.html" target="_blank" rel="noreferrer">
               Register to vote <ArrowRight size={18} />
             </a>
+            {/*
             <a className="button secondary" href="#donate" aria-disabled="true">
               Donate
             </a>
+            */}
           </div>
         </div>
 
         <div className="hero-media">
-          <img className="hero-portrait" src={images.primary} alt="Jeremy Amason campaign portrait" />
+          <img className="hero-portrait" src={images.first} alt="Jeremy Amason campaign portrait" />
           <div className="hero-note">
             <ShieldCheck size={20} />
-            <span>Veteran - Coach - Leader</span>
+            <span>Proudly endorsed by the Maryland Forward Party</span>
           </div>
         </div>
       </section>
@@ -239,7 +242,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section media-row">
+      <section className="section media-row" id="contact">
         <figure className="image-panel sign-panel">
           <img src={images.sign} alt="Jeremy Amason District 46 campaign yard sign" />
           <figcaption>Live in District 46 and want a sign?</figcaption>
@@ -268,7 +271,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section endorsement" id="contact">
+      <section className="section endorsement" id="endorsement">
         <div>
           <p className="eyebrow">Endorsement</p>
           <h2>Proudly endorsed by the Maryland Forward Party.</h2>
@@ -281,7 +284,10 @@ function App() {
             Maryland Forward Party <ExternalLink size={17} />
           </a>
         </div>
-        <img src={images.endorsement} alt="Jeremy Amason Forward Party endorsement graphic" />
+        <div className="endorsement-media">
+          <img src={images.endorsement} alt="Jeremy Amason Forward Party endorsement graphic" />
+          <img src={images.primary} alt="Jeremy Amason campaign portrait" />
+        </div>
       </section>
 
       <footer className="site-footer">

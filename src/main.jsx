@@ -25,7 +25,8 @@ const images = {
   endorsement: '/Endorsed.avif',
   sign: '/Sign.avif',
   army: '/Army.avif',
-  baltimore: '/baltimore-hero.png'
+  baltimore: '/baltimore-hero.png',
+  districtMap: '/District46Final.png'
 };
 
 const issues = [
@@ -62,29 +63,30 @@ const issues = [
 ];
 
 const neighborhoods = [
-  'Bayview',
-  'Brewers Hill',
-  'Brooklyn',
-  'Butchers Hill',
-  'Canton',
-  'Cherry Hill',
-  'Federal Hill',
-  "Fell's Point",
-  'Graceland Park',
-  'Greektown',
+  'Mt. Winans',
   'Harbor East',
   'Highlandtown',
+  'Bayview',
+  'Downtown',
   'Jonestown',
-  'Lakeland',
-  'Little Italy',
-  'Locust Point',
-  'McElderry Park',
-  'Mt. Winans',
+  'Greektown',
+  'Canton',
   'Otterbein',
+  'Inner Harbor',
+  'Little Italy',
+  'Butchers Hill',
+  'Federal Hill',
+  "Fell's Point",
   'Patterson Park',
+  'Westport',
+  'Brooklyn',
   'Riverside',
+  'Locust Point',
+  'Brewers Hill',
+  'Cherry Hill',
+  'South Baltimore',
   'St. Helena',
-  'Westport'
+  'Curtis Bay'
 ];
 
 function App() {
@@ -235,10 +237,24 @@ function App() {
             Find your district <ExternalLink size={16} />
           </a>
         </div>
-        <div className="neighborhoods">
-          {neighborhoods.map((name) => (
-            <span key={name}><MapPin size={15} /> {name}</span>
-          ))}
+        <div className="district-panel" aria-label="District 46 neighborhood finder">
+          <div className="district-map">
+            <img
+              className="district-map-image"
+              src={images.districtMap}
+              alt="Map of Maryland Legislative District 46 in the Baltimore area"
+            />
+          </div>
+          <div className="neighborhood-card">
+            <p>Scan the communities below to quickly spot whether your neighborhood is part of the district.</p>
+            <div className="neighborhoods">
+              {neighborhoods.map((name) => (
+                <span className="neighborhood-tag" key={name}>
+                  <MapPin size={15} /> {name}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 

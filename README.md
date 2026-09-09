@@ -12,6 +12,15 @@ npm run dev
 
 Then open the local URL Vite prints in the terminal.
 
+## Editing Survey Text
+
+Edit `src/surveyContent.json` to update survey headings, instructions, button labels,
+confirmation messages, chart captions, and each issue's `title` and `description`.
+The `sectionLabel` also sets the navigation link text. Keep option `id` values
+stable and preserve `{count}` placeholders in response and selection labels.
+Use valid JSON (double quotes and no trailing commas). Changes appear in the local
+preview when saved. The survey currently uses fictional results and does not save responses.
+
 ## Build
 
 ```bash

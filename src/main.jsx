@@ -18,6 +18,8 @@ import {
   Zap
 } from 'lucide-react';
 import './styles.css';
+import PrioritiesSurvey from './PrioritiesSurvey';
+import surveyContent from './surveyContent.json';
 
 const images = {
   first: '/FirstPicture.avif',
@@ -115,6 +117,7 @@ function App() {
         <nav className={menuOpen ? 'nav nav-open' : 'nav'}>
           <a href="#about" onClick={() => setMenuOpen(false)}>Get to Know Jeremy</a>
           <a href="#issues" onClick={() => setMenuOpen(false)}>Issues</a>
+          <a href="#your-priorities" onClick={() => setMenuOpen(false)}>{surveyContent.sectionLabel}</a>
           <a href="#district" onClick={() => setMenuOpen(false)}>46th District</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
           <a className="nav-cta" href="mailto:amason4md2026@gmail.com" onClick={() => setMenuOpen(false)}>Get Involved</a>
@@ -223,6 +226,8 @@ function App() {
           ))}
         </div>
       </section>
+
+      <PrioritiesSurvey />
 
       <section className="section district" id="district">
         <div className="district-copy">

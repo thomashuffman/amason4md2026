@@ -25,7 +25,7 @@ preview when saved.
 
 The `/api/survey` Vercel Function uses Neon Postgres. Set `DATABASE_URL` (or
 `POSTGRES_URL`) as a server-only environment variable. Never use a `VITE_` prefix
-for credentials. Connect `neon-carmine-bush` to Preview only and
+for credentials. Connect `neon-carmine-brush` to Preview only and
 `amason-survey-production` to Production only. Database names are managed in
 Vercel; the application uses the connection variable for its deployment.
 

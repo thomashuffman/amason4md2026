@@ -3,6 +3,7 @@
 .priorities-survey h2 { font-size: 2.5rem; line-height: 1.15; scroll-margin-top: 110px; }
 .priorities-survey h2:focus { outline: none; }
 .survey-sponsor { color: var(--muted); font-size: .95rem; }
+.survey-error { margin-top: 18px; color: #9d242c; line-height: 1.5; }
 .survey-demo { border-left: 3px solid var(--gold); background: #faf3dc; color: #624e20; padding: 12px 16px; font-size: .875rem; line-height: 1.5; margin: 24px 0; }
 .survey-fieldset { padding: 0; margin: 0; border: 0; min-width: 0; }
 .survey-fieldset legend { padding: 0; font-size: 1.125rem; line-height: 1.6; max-width: 780px; }

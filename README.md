@@ -19,7 +19,30 @@ confirmation messages, chart captions, and each issue's `title` and `description
 The `sectionLabel` also sets the navigation link text. Keep option `id` values
 stable and preserve `{count}` placeholders in response and selection labels.
 Use valid JSON (double quotes and no trailing commas). Changes appear in the local
-preview when saved. The survey currently uses fictional results and does not save responses.
+preview when saved.
+
+## Survey Storage
+
+The `/api/survey` Vercel Function uses Neon Postgres. Set `DATABASE_URL` (or
+`POSTGRES_URL`) as a server-only environment variable. Never use a `VITE_` prefix
+for credentials. Connect `neon-carmine-bush` to Preview only and
+`amason-survey-production` to Production only. Database names are managed in
+Vercel; the application uses the connection variable for its deployment.
+
+The `survey_responses` table is created on first API use. Each response contains
+a random receipt ID, exactly three issue IDs, and a timestamp. Only aggregate
+counts are returned publicly. Retried receipt IDs cannot create extra rows;
+the browser remembers successful submissions. This is not identity verification:
+clearing browser storage or using another browser permits another response.
+
+For local database testing, put a staging-only connection in the git-ignored
+`.env.local`, then run `npm run dev`. Without a connection the API returns a
+service-unavailable error rather than fabricated results. No production credentials
+are needed for local testing. Run `npm test` and `npm run build` before pushing.
+
+Staging submissions persist between deployments and stay separate from production.
+This initial version has no CAPTCHA or per-person verification. Consider abuse
+controls before collecting public production responses.
 
 ## Build
 

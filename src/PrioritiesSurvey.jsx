@@ -48,7 +48,10 @@ export default function PrioritiesSurvey() {
   const changeView = (next) => {
     setError('');
     setView(next);
-    requestAnimationFrame(() => heading.current?.focus());
+    requestAnimationFrame(() => {
+      heading.current?.focus({ preventScroll: true });
+      document.getElementById('your-priorities')?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    });
   };
   const toggle = (id) => {
     setSelected((current) => current.includes(id)
@@ -95,15 +98,21 @@ export default function PrioritiesSurvey() {
         {view === 'form' ? (
           <form onSubmit={submit} aria-busy={saving}>
             <fieldset className="survey-fieldset" disabled={saving}>
-              <legend>{content.question}</legend>
+              <legend>{submitted ? content.reviewNotice : content.question}</legend>
               <div className="survey-toolbar">
-                <span role="status">{content.selectionCount.replace('{count}', selected.length)}{selected.length === 3 ? ` · ${content.selectionLimitHint}` : ''}</span>
+                <span role="status">{submitted ? content.responseSaved : content.selectionCount.replace('{count}', selected.length)}{!submitted && selected.length === 3 ? ` · ${content.selectionLimitHint}` : ''}</span>
                 <button className="survey-text-button" type="button" onClick={() => changeView('results')}>
                   <BarChart3 size={15} aria-hidden="true" /> {content.viewResponses}
                 </button>
               </div>
               <div className="survey-options">
                 {options.map(({ id, title, description }) => {
+                  if (submitted) return (
+                    <details className="survey-option survey-review-option" key={id}>
+                      <summary>{title}</summary>
+                      <p className="survey-description">{description}</p>
+                    </details>
+                  );
                   const checked = selected.includes(id);
                   return (
                     <div className={`survey-option${checked ? ' is-selected' : ''}`} key={id}>
@@ -117,10 +126,10 @@ export default function PrioritiesSurvey() {
                 })}
               </div>
             </fieldset>
-            <div className="survey-actions">
+            {!submitted && <div className="survey-actions">
               <button className="button primary" type="submit" disabled={selected.length !== 3 || saving}>{saving ? content.saving : content.submitResponse} <ArrowRight size={18} aria-hidden="true" /></button>
               <span>{content.selectionHint}</span>
-            </div>
+            </div>}
             {error && <p className="survey-error" role="alert">{error}</p>}
           </form>
         ) : (
@@ -144,9 +153,10 @@ export default function PrioritiesSurvey() {
               ))}
             </ol>
             </>}
-            {submitted
-              ? <button className="survey-text-button" type="button" disabled={loading} onClick={loadResults}>{content.refreshResults}</button>
-              : <button className="survey-text-button" type="button" onClick={() => changeView('form')}><ArrowLeft size={16} aria-hidden="true" />{content.backToSurvey}</button>}
+            <div className="survey-result-actions">
+              <button className="survey-text-button" type="button" onClick={() => changeView('form')}><ArrowLeft size={16} aria-hidden="true" />{content.backToSurvey}</button>
+              {submitted && <button className="survey-text-button" type="button" disabled={loading} onClick={loadResults}>{content.refreshResults}</button>}
+            </div>
           </div>
         )}
       </div>

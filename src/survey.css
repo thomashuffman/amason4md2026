@@ -1,4 +1,8 @@
-.priorities-survey { background: #fffdf9; border-top: 1px solid var(--line); scroll-margin-top: 100px; }
+.priorities-survey { background: #fffdf9; border-top: 1px solid var(--line); scroll-margin-top: 0; }
+.survey-result-actions { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+.survey-review-option summary { padding: 17px 16px; min-height: 60px; font-weight: 700; line-height: 1.4; cursor: pointer; }
+.survey-review-option .survey-description { padding-left: 16px; }
+.survey-review-option summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 .survey-inner { max-width: 1000px; margin: 0 auto; }
 .priorities-survey h2 { font-size: 2.5rem; line-height: 1.15; scroll-margin-top: 110px; }
 .priorities-survey h2:focus { outline: none; }
@@ -33,6 +37,7 @@
 .survey-bar-track div { height: 100%; background: var(--blue); border-radius: 3px; }
 @media (min-width: 861px) and (max-width: 1200px) { .site-header { gap: 16px; padding-left: 18px; padding-right: 18px; } .nav { gap: 12px; font-size: .8rem; } .brand strong { font-size: .9rem; } }
 @media (max-width: 620px) {
+  .priorities-survey { padding-top: 28px; }
   .priorities-survey h2 { font-size: 1.875rem; }
   .survey-options { grid-template-columns: 1fr; gap: 8px; }
   .survey-option label { min-height: 60px; padding: 14px; font-size: .95rem; }

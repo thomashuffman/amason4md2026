@@ -26,6 +26,8 @@
   "refreshResults": "Refresh results",
   "emptyResults": "No responses yet.",
   "backToSurvey": "Back to survey",
+  "responseSaved": "Response saved",
+  "reviewNotice": "Your response is saved. You can read any issue below without changing your submission.",
   "options": [
     { "id": "cost-of-living", "title": "Cost of Living", "description": "We all know that the price for everything has increased. I will work to ensure that we are lowering the tax burden and eliminating junk fees (e.g. car registration, gas appliance tax) that cost our families thousands of dollars a year." },
     { "id": "housing", "title": "Housing", "description": "Making Maryland a place where people want to live. I will work to create legislation that gives young, first-time home buyers property tax exemption in Baltimore City for 3 years." },

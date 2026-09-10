@@ -26,17 +26,30 @@ export default function PrioritiesSurvey() {
   const requestId = React.useRef(readReceipt().id);
   const inFlight = React.useRef(false);
   const heading = React.useRef(null);
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     if (window.location.hash !== '#your-priorities') return;
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    let frame;
     const alignSurvey = () => {
-      document.getElementById('your-priorities')?.scrollIntoView({ behavior: 'instant' });
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          if (window.location.hash === '#your-priorities') {
+            document.getElementById('your-priorities')?.scrollIntoView({ behavior: 'instant' });
+          }
+        });
+      });
     };
-    const frame = requestAnimationFrame(alignSurvey);
-    // Images above the survey can shift its position after the initial render.
+    alignSurvey();
+    // Align after image layout and browser page restoration have settled.
     window.addEventListener('load', alignSurvey, { once: true });
+    window.addEventListener('pageshow', alignSurvey);
     return () => {
       cancelAnimationFrame(frame);
       window.removeEventListener('load', alignSurvey);
+      window.removeEventListener('pageshow', alignSurvey);
+      window.history.scrollRestoration = previousRestoration;
     };
   }, []);
   const loadResults = React.useCallback(async () => {

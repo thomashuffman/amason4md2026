@@ -44,7 +44,7 @@
     { "id": "education", "title": "Education", "description": "I will work to ensure that our teachers are properly compensated, that we have enough social workers in our schools, and that our city school administration can’t continue to line their pockets and waste hundreds of millions of dollars." },
     { "id": "infrastructure", "title": "Local Infrastructure", "description": "I will work to fix our existing infrastructure by repairing the Hanover Street Bridge immediately, improving our bus services, building bus stop shelters, and financing the Key Bridge." },
     { "id": "campaign-finance", "title": "Maryland Campaign Finance Reform", "description": "My opponents have taken hundreds of thousands of dollars from corporate and mega-donors. I will work to create legislation that eliminates non-individual donations." },
-    { "id": "democracy", "title": "Maryland Democracy Reforms", "description": "I will work for reforms in our electoral system, including term limits for the Maryland House and Senate, open primaries so everyone has a voice, and ranked-choice voting that makes our elections more representative." },
+    { "id": "democracy", "title": "Maryland Election Reforms", "description": "I will work for reforms in our electoral system, including term limits for the Maryland House and Senate, open primaries so everyone has a voice, and ranked-choice voting that makes our elections more representative." },
     { "id": "districting", "title": "Maryland Congressional Gerrymandering", "description": "I will fight the Democratic Party's efforts to rig the maps for its benefit, rather than for the benefit of Marylanders or democracy." },
     { "id": "other", "title": "Other", "description": "An issue not listed above." }    
   ]

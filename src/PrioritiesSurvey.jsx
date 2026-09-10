@@ -2,7 +2,6 @@ import React from 'react';
 import { ArrowRight, ArrowLeft, BarChart3, CheckCircle2 } from 'lucide-react';
 import './survey.css';
 import content from './surveyContent.json';
-import OtherAnswers from './OtherAnswers';
 import MessageJeremy from './MessageJeremy';
 
 const { options } = content;
@@ -168,7 +167,6 @@ export default function PrioritiesSurvey() {
             {!loading && !error && data && <>
             <div className="survey-results-heading">
               <h3>{content.chartTitle}</h3>
-              <span>{(total === 1 ? content.responseCountSingular : content.responseCount).replace('{count}', total)}</span>
             </div>
             <p className="survey-chart-note">{content.chartNote}</p>
             {total === 0 && <p>{content.emptyResults}</p>}
@@ -177,7 +175,6 @@ export default function PrioritiesSurvey() {
                 <li key={id}>
                   <div className="survey-bar-label"><span>{title}</span><strong>{percent}%</strong></div>
                   <div className="survey-bar-track" aria-hidden="true"><div style={{ width: `${percent}%` }} /></div>
-                  {id === 'other' && <OtherAnswers />}
                 </li>
               ))}
             </ol>

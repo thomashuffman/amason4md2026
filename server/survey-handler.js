@@ -49,9 +49,7 @@ export function createSurveyHandler(store) {
     try {
       const url = new URL(req.url || '/api/survey', 'http://localhost');
       if (url.searchParams.get('view') === 'other') {
-        const rawPage = url.searchParams.get('page') || '0';
-        if (!/^\d{1,6}$/.test(rawPage)) return res.status(400).json({ error: 'page' });
-        return res.status(200).json(await store.readOtherAnswers(Number(rawPage)));
+        return res.status(404).json({ error: 'not_found' });
       }
       const results = await store.readResults();
       return res.status(200).json({ ...results, environment: process.env.VERCEL_ENV || 'development' });

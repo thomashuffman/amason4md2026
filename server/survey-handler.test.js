@@ -76,11 +76,11 @@ test('Other requires text, enforces 50 characters, and saves trimmed text', asyn
   assert.equal(saved[2][2], null);
 });
 
-test('Other pagination validates pages and exposes only answer text', async () => {
-  const handler = createSurveyHandler({ async readOtherAnswers(page) { return { page, answers: ['Parks'], hasMore: false }; } });
-  for (const page of ['-1', '1.5', 'abc', '1000000']) {
-    assert.equal((await invoke(handler, 'GET', null, {}, `/api/survey?view=other&page=${page}`)).code, 400);
+test('written Other answers are not publicly accessible', async () => {
+  const handler = createSurveyHandler({ async readOtherAnswers() { assert.fail('Must not read private answers'); } });
+  for (const page of ['0', '1', '-1', '1.5', 'abc', '1000000']) {
+    const result = await invoke(handler, 'GET', null, {}, `/api/survey?view=other&page=${page}`);
+    assert.equal(result.code, 404);
+    assert.deepEqual(result.data, { error: 'not_found' });
   }
-  const result = await invoke(handler, 'GET', null, {}, '/api/survey?view=other&page=1');
-  assert.deepEqual(result.data, { page: 1, answers: ['Parks'], hasMore: false });
 });

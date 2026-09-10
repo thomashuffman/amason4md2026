@@ -30,22 +30,42 @@ export default function PrioritiesSurvey() {
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = 'manual';
     let frame;
+    let stopped = false;
+    const section = document.getElementById('your-priorities');
     const alignSurvey = () => {
+      if (stopped) return;
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         frame = requestAnimationFrame(() => {
-          if (window.location.hash === '#your-priorities') {
-            document.getElementById('your-priorities')?.scrollIntoView({ behavior: 'instant' });
+          if (!stopped && window.location.hash === '#your-priorities') {
+            section?.scrollIntoView({ behavior: 'instant', block: 'start' });
           }
         });
       });
     };
+    // Watch late image layout without overriding a visitor's own scrolling.
+    const observer = new ResizeObserver(alignSurvey);
+    for (let element = section?.previousElementSibling; element; element = element.previousElementSibling) {
+      observer.observe(element);
+    }
+    const stop = () => {
+      stopped = true;
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.history.scrollRestoration = previousRestoration;
+    };
+    const interactionEvents = ['touchstart', 'pointerdown', 'wheel', 'keydown', 'hashchange'];
+    interactionEvents.forEach(type => window.addEventListener(type, stop, { passive: true }));
+    const timeout = window.setTimeout(stop, 15000);
+    document.fonts.ready.then(alignSurvey);
     alignSurvey();
     // Align after image layout and browser page restoration have settled.
     window.addEventListener('load', alignSurvey, { once: true });
     window.addEventListener('pageshow', alignSurvey);
     return () => {
-      cancelAnimationFrame(frame);
+      stop();
+      clearTimeout(timeout);
+      interactionEvents.forEach(type => window.removeEventListener(type, stop));
       window.removeEventListener('load', alignSurvey);
       window.removeEventListener('pageshow', alignSurvey);
       window.history.scrollRestoration = previousRestoration;

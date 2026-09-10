@@ -187,7 +187,7 @@ function App() {
           </p>
         </div>
         <figure className="image-panel">
-          <img src={images.army} alt="Jeremy Amason with fellow soldiers in front of a UH-60 helicopter" />
+          <img src={images.army} width={570} height={428} style={{ height: 'auto' }} alt="Jeremy Amason with fellow soldiers in front of a UH-60 helicopter" />
           <figcaption>My Army aviation service informs my approach to practical leadership.</figcaption>
         </figure>
       </section>

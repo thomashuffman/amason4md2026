@@ -2,7 +2,18 @@ import React from 'react';
 import { Mail, Send, X, CheckCircle2 } from 'lucide-react';
 import copy from './messageContent.json';
 
-export default function MessageJeremy() {
+const MessageContext = React.createContext(null);
+
+export default function MessageJeremy({ children, className = 'survey-message-button', onClick }) {
+  const open = React.useContext(MessageContext);
+  return <button type="button" className={className} onClick={event => {
+    const trigger = event.currentTarget;
+    onClick?.(event);
+    open(trigger);
+  }}>{children || <><Mail size={17} aria-hidden="true" />{copy.button}</>}</button>;
+}
+
+export function MessageProvider({ children }) {
   const dialog = React.useRef(null);
   const trigger = React.useRef(null);
   const attempt = React.useRef(null);
@@ -56,13 +67,15 @@ export default function MessageJeremy() {
       <input id={`message-${key}`} type={type} required maxLength={maxLength} autoComplete={key === 'name' || key === 'email' ? key : 'off'} value={draft[key]} onChange={event => setDraft(current => ({ ...current, [key]: event.target.value }))} />
     </label>
   );
-  return <>
-    <button ref={trigger} type="button" className="survey-message-button" onClick={() => {
+  const open = element => {
+      trigger.current = element;
       setSent(false);
       setError('');
       dialog.current.showModal();
       checkAvailability();
-    }}><Mail size={17} aria-hidden="true" />{copy.button}</button>
+  };
+  return <MessageContext.Provider value={open}>
+    {children}
     <dialog ref={dialog} className="message-dialog" aria-labelledby="message-title" onCancel={event => { event.preventDefault(); close(); }}>
       <div className="message-dialog-heading">
         <h2 id="message-title">{copy.title}</h2>
@@ -88,5 +101,5 @@ export default function MessageJeremy() {
         </form>
       )}
     </dialog>
-  </>;
+  </MessageContext.Provider>;
 }

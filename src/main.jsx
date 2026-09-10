@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import './styles.css';
 import PrioritiesSurvey from './PrioritiesSurvey';
+import MessageJeremy, { MessageProvider } from './MessageJeremy';
 import surveyContent from './surveyContent.json';
 
 const images = {
@@ -120,7 +121,7 @@ function App() {
           <a href="#your-priorities" onClick={() => setMenuOpen(false)}>{surveyContent.sectionLabel}</a>
           <a href="#district" onClick={() => setMenuOpen(false)}>46th District</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
-          <a className="nav-cta" href="mailto:amason4md2026@gmail.com" onClick={() => setMenuOpen(false)}>Get Involved</a>
+          <MessageJeremy className="nav-cta contact-trigger" onClick={() => setMenuOpen(false)}>Get Involved</MessageJeremy>
         </nav>
       </header>
 
@@ -276,18 +277,18 @@ function App() {
             across District 46.
           </p>
           <div className="link-list">
-            <a className="request-sign-link" href="mailto:amason4md2026@gmail.com">
+            <MessageJeremy className="request-sign-link contact-trigger">
               Request a sign <Mail size={16} />
-            </a>
+            </MessageJeremy>
             <a href="https://www.facebook.com/JeremyAmasonForDelegate" target="_blank" rel="noreferrer">
               Facebook <ExternalLink size={16} />
             </a>
             <a href="https://www.instagram.com/amason4md2026/" target="_blank" rel="noreferrer">
               Instagram <ExternalLink size={16} />
             </a>
-            <a href="mailto:amason4md2026@gmail.com">
+            <MessageJeremy className="contact-trigger">
               Email the campaign <Mail size={16} />
-            </a>
+            </MessageJeremy>
           </div>
         </div>
       </section>
@@ -316,7 +317,7 @@ function App() {
           <strong>Jeremy L. Amason for Maryland House District 46</strong>
           <p>Authority: Friends of Jeremy Amason. Megan Amason, Treasurer.</p>
         </div>
-        <a href="mailto:amason4md2026@gmail.com"><Mail size={17} /> amason4md2026@gmail.com</a>
+        <MessageJeremy className="contact-trigger"><Mail size={17} /> amason4md2026@gmail.com</MessageJeremy>
         <span><Handshake size={17} /> Vote for a Better Baltimore</span>
         <span><CheckCircle2 size={17} /> 2026 Primary Election</span>
       </footer>
@@ -324,4 +325,4 @@ function App() {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+createRoot(document.getElementById('root')).render(<MessageProvider><App /></MessageProvider>);

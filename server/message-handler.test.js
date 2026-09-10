@@ -30,6 +30,23 @@ test('valid messages use a fixed recipient, plain text, reply-to, and stable ret
   assert.equal(requests[0].options.headers['Idempotency-Key'], requests[1].options.headers['Idempotency-Key']);
 });
 
+test('production uses its configured sender without the staging prefix', async () => {
+  let payload;
+  const handler = createMessageHandler({
+    env: { ...env, VERCEL_ENV: 'production' },
+    reserveMessageAttempt: async () => true,
+    send: async (url, options) => {
+      payload = JSON.parse(options.body);
+      return { ok: true, json: async () => ({ id: 'production-test' }) };
+    }
+  });
+  assert.equal((await invoke(handler)).code, 200);
+  assert.equal(payload.from, env.CONTACT_FROM_EMAIL);
+  assert.equal(payload.subject, 'Website message: Form test');
+  assert.deepEqual(payload.to, ['amason4md2026@gmail.com']);
+  assert.equal(payload.reply_to, valid.email);
+});
+
 test('invalid input and spam are rejected before emailing', async () => {
   let sent = 0;
   const handler = createMessageHandler({ env, reserveMessageAttempt: async () => true, send: async () => { sent++; } });

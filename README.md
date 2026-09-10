@@ -31,7 +31,7 @@ Vercel; the application uses the connection variable for its deployment.
 
 The `survey_responses` table is created on first API use. Each response contains
 a random receipt ID, exactly three issue IDs, and a timestamp. Only aggregate
-counts are returned publicly. Retried receipt IDs cannot create extra rows;
+counts and submitted Other text are returned publicly. Retried receipt IDs cannot create extra rows;
 the browser remembers successful submissions. This is not identity verification:
 clearing browser storage or using another browser permits another response.
 
@@ -86,6 +86,24 @@ npm run build
 ```
 
 The production output will be created in `dist/`.
+
+## Production Release Checklist
+
+- Verify the preview contact form and survey on desktop and mobile.
+- Configure Production-only `DATABASE_URL` for `amason-survey-production`;
+  never reuse the staging database connection.
+- Configure Production `RESEND_API_KEY` (sensitive, sending-only) and
+  `CONTACT_FROM_EMAIL` as `Campaign Website <website@amason4md2026.com>`.
+- Confirm acceptance of unmoderated public Other answers and the survey's
+  basic duplicate protection before launch; these are not verified votes.
+- After explicit approval, merge `preview/priorities-survey` into `main`.
+  Vercel builds the same code with Production environment variables. Do not
+  promote a preview artifact carrying staging configuration.
+- Verify production email delivery and database isolation after deployment.
+
+All five email entry points share one contact dialog and preserve an unsent
+draft while navigating between them. Preview messages still reach the real
+campaign inbox, with a `[STAGING]` subject prefix.
 
 ## Suggested Next Steps
 

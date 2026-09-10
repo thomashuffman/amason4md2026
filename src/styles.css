@@ -40,6 +40,15 @@ button {
   font: inherit;
 }
 
+.contact-trigger {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -235,7 +244,7 @@ h3 {
 
 .button,
 .text-link,
-.link-list a {
+.link-list :is(a, .contact-trigger) {
   align-items: center;
   display: inline-flex;
   gap: 8px;
@@ -262,7 +271,7 @@ h3 {
 }
 
 .text-link,
-.link-list a {
+.link-list :is(a, .contact-trigger) {
   color: var(--blue);
   font-weight: 900;
 }
@@ -482,7 +491,7 @@ h3 {
   margin-top: 24px;
 }
 
-.link-list a {
+.link-list :is(a, .contact-trigger) {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -537,6 +546,7 @@ h3 {
 }
 
 .site-footer a,
+.site-footer .contact-trigger,
 .site-footer span {
   align-items: center;
   color: rgba(255, 255, 255, 0.82);
@@ -663,7 +673,7 @@ h3 {
   .hero-actions,
   .button,
   .link-list,
-  .link-list a {
+  .link-list :is(a, .contact-trigger) {
     width: 100%;
   }
 

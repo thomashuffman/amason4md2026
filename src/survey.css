@@ -4,6 +4,45 @@
 .survey-review-option .survey-description { padding-left: 16px; }
 .survey-review-option summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
 .survey-inner { max-width: 1000px; margin: 0 auto; }
+.survey-topline { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.survey-topline .eyebrow { margin: 0; }
+.survey-message-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: white; color: var(--blue); border: 1px solid var(--line); border-radius: 6px; min-height: 44px; padding: 10px 14px; font-weight: 700; cursor: pointer; }
+.survey-other-input { padding: 0 16px 16px; }
+.survey-option .survey-other-input label { display: block; padding: 0; min-height: 0; font-size: .875rem; margin-bottom: 8px; }
+.survey-option .survey-other-input input { width: 100%; height: 44px; border: 1px solid #8a98a5; border-radius: 4px; padding: 10px; font: inherit; accent-color: auto; }
+.survey-other-input p { margin: 8px 0 0; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.other-count { margin-top: 6px; text-align: right; font-size: .8rem; color: var(--muted); }
+.other-answers { margin-top: 12px; border: 1px solid var(--line); border-radius: 6px; background: #fff; }
+.other-answers summary { padding: 12px 14px; min-height: 44px; font-size: .875rem; color: var(--blue); cursor: pointer; font-weight: 700; }
+.other-answers-body { padding: 0 14px 12px; }
+.other-answer-list { margin: 0; padding: 0; list-style: none; max-height: 240px; overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
+.other-answer-list li { padding: 12px 4px; border-bottom: 1px solid #e8ebef; overflow-wrap: anywhere; line-height: 1.5; font-size: .9rem; }
+.other-pagination { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: .85rem; }
+.other-pagination button, .message-close { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex: 0 0 44px; border: 1px solid var(--line); border-radius: 4px; background: #fff; color: var(--blue); cursor: pointer; }
+.other-pagination button:disabled, .message-dialog button:disabled { opacity: .5; cursor: not-allowed; }
+.message-dialog { width: min(540px, calc(100% - 24px)); max-height: calc(100dvh - 24px); padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: #fffdf9; color: var(--ink); overflow-y: auto; overscroll-behavior: contain; }
+.message-dialog::backdrop { background: rgba(16, 25, 35, .65); }
+.message-dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.message-dialog .message-dialog-heading h2 { margin: 0; font-size: 1.6rem; line-height: 1.2; }
+.message-recipient { color: var(--muted); font-size: .85rem; overflow-wrap: anywhere; margin: 12px 0 20px; }
+.message-fields { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 14px; }
+.message-field { display: grid; gap: 6px; font-size: .9rem; font-weight: 700; }
+.message-field input, .message-field textarea { width: 100%; min-width: 0; padding: 10px 12px; font: inherit; font-size: 1rem; font-weight: 400; color: var(--ink); background: #fff; border: 1px solid #8a98a5; border-radius: 4px; }
+.message-field input { min-height: 44px; }
+.message-field textarea { resize: vertical; min-height: 120px; max-height: 300px; }
+.message-privacy, .message-counter { color: var(--muted); font-size: .8rem; line-height: 1.5; }
+.message-counter { text-align: right; margin-top: -10px; }
+.message-privacy { margin: 16px 0; }
+.message-notice { padding: 12px; background: #faf3dc; color: #624e20; line-height: 1.5; font-size: .875rem; }
+.message-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.message-success { line-height: 1.5; padding-top: 16px; }
+.message-success > svg { color: var(--green); margin-bottom: 12px; }
+.message-dialog input:focus-visible, .message-dialog textarea:focus-visible, .other-answers summary:focus-visible, .other-answer-list:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+@media (max-width: 620px) {
+  .message-dialog { padding: 18px; }
+  .survey-topline { gap: 8px; }
+  .survey-message-button { font-size: .85rem; padding: 8px 10px; }
+}
 .priorities-survey h2 { font-size: 2.5rem; line-height: 1.15; scroll-margin-top: 110px; }
 .priorities-survey h2:focus { outline: none; }
 .survey-sponsor { color: var(--muted); font-size: .95rem; }

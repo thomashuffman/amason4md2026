@@ -2,6 +2,8 @@ import React from 'react';
 import { ArrowRight, ArrowLeft, BarChart3, CheckCircle2 } from 'lucide-react';
 import './survey.css';
 import content from './surveyContent.json';
+import OtherAnswers from './OtherAnswers';
+import MessageJeremy from './MessageJeremy';
 
 const { options } = content;
 
@@ -14,6 +16,7 @@ function readReceipt() {
 
 export default function PrioritiesSurvey() {
   const [selected, setSelected] = React.useState([]);
+  const [otherText, setOtherText] = React.useState('');
   const [submitted, setSubmitted] = React.useState(() => readReceipt().saved === true);
   const [view, setView] = React.useState(() => readReceipt().saved ? 'results' : 'form');
   const [data, setData] = React.useState(null);
@@ -25,10 +28,16 @@ export default function PrioritiesSurvey() {
   const heading = React.useRef(null);
   React.useEffect(() => {
     if (window.location.hash !== '#your-priorities') return;
-    const frame = requestAnimationFrame(() => {
+    const alignSurvey = () => {
       document.getElementById('your-priorities')?.scrollIntoView({ behavior: 'instant' });
-    });
-    return () => cancelAnimationFrame(frame);
+    };
+    const frame = requestAnimationFrame(alignSurvey);
+    // Images above the survey can shift its position after the initial render.
+    window.addEventListener('load', alignSurvey, { once: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener('load', alignSurvey);
+    };
   }, []);
   const loadResults = React.useCallback(async () => {
     setLoading(true);
@@ -60,7 +69,7 @@ export default function PrioritiesSurvey() {
   };
   const submit = async (event) => {
     event.preventDefault();
-    if (selected.length !== 3 || submitted || inFlight.current) return;
+    if (selected.length !== 3 || (selected.includes('other') && !otherText.trim()) || submitted || inFlight.current) return;
     inFlight.current = true;
     setSaving(true);
     setError('');
@@ -69,7 +78,7 @@ export default function PrioritiesSurvey() {
       try { localStorage.setItem(receiptKey, JSON.stringify({ id: requestId.current })); } catch { /* In-memory retry protection remains available. */ }
       const response = await fetch('/api/survey', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: requestId.current, choices: selected })
+        body: JSON.stringify({ id: requestId.current, choices: selected, otherText: selected.includes('other') ? otherText : undefined })
       });
       if (!response.ok || !(await response.json()).saved) throw new Error();
       try { localStorage.setItem(receiptKey, JSON.stringify({ id: requestId.current, saved: true })); } catch { /* Storage may be disabled by the browser. */ }
@@ -87,7 +96,7 @@ export default function PrioritiesSurvey() {
   return (
     <section className="section priorities-survey" id="your-priorities" aria-labelledby="survey-title">
       <div className="survey-inner">
-        <p className="eyebrow">{content.sectionLabel}</p>
+        <div className="survey-topline"><p className="eyebrow">{content.sectionLabel}</p><MessageJeremy /></div>
         <h2 id="survey-title" ref={heading} tabIndex={-1}>
           {view === 'form' ? content.formTitle : content.resultsTitle}
         </h2>
@@ -121,13 +130,19 @@ export default function PrioritiesSurvey() {
                         <span>{title}</span>
                       </label>
                       {checked && <p id={`${id}-description`} className="survey-description">{description}</p>}
+                      {checked && id === 'other' && <div className="survey-other-input">
+                        <label htmlFor="other-issue">{content.otherLabel}</label>
+                        <input id="other-issue" type="text" required maxLength={50} value={otherText} onChange={event => setOtherText(event.target.value)} aria-describedby="other-hint other-count" />
+                        <div id="other-count" className="other-count">{otherText.length}/50</div>
+                        <p id="other-hint">{content.otherHint}</p>
+                      </div>}
                     </div>
                   );
                 })}
               </div>
             </fieldset>
             {!submitted && <div className="survey-actions">
-              <button className="button primary" type="submit" disabled={selected.length !== 3 || saving}>{saving ? content.saving : content.submitResponse} <ArrowRight size={18} aria-hidden="true" /></button>
+              <button className="button primary" type="submit" disabled={selected.length !== 3 || (selected.includes('other') && !otherText.trim()) || saving}>{saving ? content.saving : content.submitResponse} <ArrowRight size={18} aria-hidden="true" /></button>
               <span>{content.selectionHint}</span>
             </div>}
             {error && <p className="survey-error" role="alert">{error}</p>}
@@ -149,6 +164,7 @@ export default function PrioritiesSurvey() {
                 <li key={id}>
                   <div className="survey-bar-label"><span>{title}</span><strong>{percent}%</strong></div>
                   <div className="survey-bar-track" aria-hidden="true"><div style={{ width: `${percent}%` }} /></div>
+                  {id === 'other' && <OtherAnswers />}
                 </li>
               ))}
             </ol>

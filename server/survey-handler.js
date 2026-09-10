@@ -29,20 +29,30 @@ export function createSurveyHandler(store) {
           body = JSON.parse(body);
         }
       } catch { return res.status(400).json({ error: 'invalid' }); }
-      const { id, choices } = body || {};
+      const { id, choices, otherText } = body || {};
       if (typeof id !== 'string' || !uuid.test(id) || !Array.isArray(choices)
         || choices.length !== 3 || new Set(choices).size !== 3
         || !choices.every((choice) => optionIds.has(choice))) {
         return res.status(400).json({ error: 'invalid' });
       }
+      const other = choices.includes('other') && typeof otherText === 'string' ? otherText.trim() : null;
+      if (choices.includes('other') && (!other || otherText.length > 50 || /[\u0000-\u001f\u007f]/.test(other))) {
+        return res.status(400).json({ error: 'other' });
+      }
       try {
-        const created = await store.saveResponse(id, choices);
+        const created = await store.saveResponse(id, choices, other);
         return res.status(created ? 201 : 200).json({ saved: true });
       } catch {
         return res.status(503).json({ error: 'unavailable' });
       }
     }
     try {
+      const url = new URL(req.url || '/api/survey', 'http://localhost');
+      if (url.searchParams.get('view') === 'other') {
+        const rawPage = url.searchParams.get('page') || '0';
+        if (!/^\d{1,6}$/.test(rawPage)) return res.status(400).json({ error: 'page' });
+        return res.status(200).json(await store.readOtherAnswers(Number(rawPage)));
+      }
       const results = await store.readResults();
       return res.status(200).json({ ...results, environment: process.env.VERCEL_ENV || 'development' });
     } catch {

@@ -3,7 +3,14 @@
   "formTitle": "What matters most to you?",
   "resultsTitle": "Community priorities",
   "sponsor": "A survey from the Jeremy Amason campaign.",
-  "privacyNotice": "Your three choices are saved without your name or email. Only combined results are shown publicly.",
+  "privacyNotice": "Your three choices are saved without your name or email. Results and written Other answers are visible to other visitors.",
+  "otherLabel": "Your issue",
+  "otherHint": "50 characters maximum. Your answer will be public; do not include personal contact details.",
+  "otherAnswersLabel": "Read Other answers",
+  "otherEmpty": "No written answers yet.",
+  "otherPage": "Page {page}",
+  "previousPage": "Previous answers",
+  "nextPage": "Next answers",
   "stagingNotice": "Staging survey: these test responses are stored separately from the live survey.",
   "question": "Choose three issues that matter most to you or affect your day-to-day life in Baltimore and across Maryland.",
   "selectionCount": "{count} of 3 selected",
@@ -38,6 +45,7 @@
     { "id": "infrastructure", "title": "Local Infrastructure", "description": "Work to fix our existing infrastructure, repairing the Hanover Street Bridge immediately, improving our bus services, building bus stop shelters, and financing the Key Bridge." },
     { "id": "campaign-finance", "title": "Maryland Campaign Finance Reform", "description": "My opponents have taken hundreds of thousands of dollars from corporate and mega-donors. I will work to create legislation that eliminates non-individual donations." },
     { "id": "democracy", "title": "Maryland Democracy Reforms", "description": "Work for reforms in our electoral system, including term limits for Maryland House and Senate, open primaries so everyone has a voice, and ranked-choice voting that makes our elections more representative." },
-    { "id": "districting", "title": "Maryland Congressional Gerrymandering", "description": "Fight the Democrat Party that are trying to rig the maps for their benefit, not the benefit of Marylanders or democracy." }
+    { "id": "districting", "title": "Maryland Congressional Gerrymandering", "description": "Fight the Democrat Party that are trying to rig the maps for their benefit, not the benefit of Marylanders or democracy." },
+    { "id": "other", "title": "Other", "description": "An issue not listed above." }
   ]
 }

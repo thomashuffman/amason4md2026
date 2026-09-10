@@ -1,0 +1,23 @@
+{
+  "button": "Message Jeremy",
+  "title": "Message Jeremy",
+  "recipient": "To: amason4md2026@gmail.com",
+  "name": "Your name",
+  "email": "Your email",
+  "subject": "Subject",
+  "message": "Message",
+  "privacy": "Your name, email, and message will be emailed to the campaign. They will not appear in survey results.",
+  "send": "Send message",
+  "sending": "Sending...",
+  "checking": "Checking email availability...",
+  "unavailable": "Email sending is not available yet. You can preview this form, but your message will not be sent or saved.",
+  "statusError": "Email availability could not be checked. Please try again.",
+  "sendError": "We could not confirm your message was sent. Please retry with the same message to avoid duplicates.",
+  "rateLimit": "Too many messages have been attempted. Please try again in an hour.",
+  "invalid": "Please check the fields and try again.",
+  "retry": "Try again",
+  "successTitle": "Message sent",
+  "success": "Your message was accepted for delivery to the campaign. Replies will go to the email address you provided.",
+  "close": "Close message form",
+  "done": "Done"
+}

@@ -44,6 +44,41 @@ Staging submissions persist between deployments and stay separate from productio
 This initial version has no CAPTCHA or per-person verification. Consider abuse
 controls before collecting public production responses.
 
+### Other Answers
+
+Other is one of the three choices and requires 1-50 characters. The API validates
+the text and stores it in the nullable `other_text` column, added automatically
+without changing existing submissions. Public answers are returned as plain text
+in pages of 20, oldest first, inside a scrollable results disclosure. Answers are
+not moderated; the form warns visitors not to include personal contact details.
+
+### Message Jeremy
+
+The contact dialog calls `/api/message`, which sends plain-text email through
+Resend to the fixed address `amason4md2026@gmail.com`. Copy is editable in
+`src/messageContent.json`. Contact messages are not saved in the survey database.
+
+To enable delivery, create a Resend account, verify a sender domain (add Resend's
+DNS records wherever the domain's DNS is managed), then add these server-only
+Vercel environment variables to Preview:
+
+- `RESEND_API_KEY`: a Resend sending API key, marked sensitive.
+- `CONTACT_FROM_EMAIL`: an address on that verified domain, for example
+  `Campaign Website <website@your-verified-domain>`.
+
+The sender must not be the visitor's address or an unverified Gmail address.
+The visitor's address is used as Reply-To. Do not prefix secrets with `VITE_`.
+Redeploy the preview after setting the variables. Configure Production separately
+only when approved. Preview emails have a `[STAGING]` subject prefix but still go
+to the campaign inbox. Without configuration, the form disables sending and
+reports that email is unavailable; it never claims an email was delivered.
+
+Email retries use Resend idempotency keys (24-hour provider window). A honeypot and
+database-backed limit of five attempts per network address per hour reduce spam.
+Only expiring keyed IP fingerprints are stored for that limit. This is basic abuse
+protection, not CAPTCHA. The native dialog supports keyboard focus containment,
+Escape to close, and internal scrolling on small screens.
+
 ## Build
 
 ```bash
